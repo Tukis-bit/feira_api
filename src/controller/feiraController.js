@@ -1,15 +1,25 @@
 import { Router } from "express";
 const endpoint = Router();
 
-import * as repo from "../repository/feiraRepository.js"
+import cadastrarService from "../service/visitante/cadastrarService.js";
+
 
 endpoint.post('/cadastro', async(req,resp) =>{
 
-    let novoCadastro = req.body;
-    let id = await repo.inserirCadastro(novoCadastro)
+    try {
+        let novoCadastro = req.body;
+       let id = await cadastrarService(novoCadastro); 
+    
+        resp.send({id})
+        
+    } 
+    catch (err) {
+        logErro(err);
+        resp.status(400).send(criarErro(err));
 
-    resp.send({id})
-})
+    }
+
+    })
 
 
 
