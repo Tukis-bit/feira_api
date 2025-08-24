@@ -31,3 +31,43 @@ export async function inserirCadastro(novoCadastro){
    return info.insertId
 } 
 
+export async function consultarNome(nome){
+    let comando = `
+    
+    select nome,cpf,email,ex_aluno from tb_visitante
+    where nome like  ? 
+    `
+ 
+    let info = await connection.query(comando,['%' + nome + '%']);
+    let regis = info[0]
+
+    return regis;
+
+}
+
+export async function verificarCPF(cpf){
+    let comando = `
+    
+    select nome,cpf,email,ex_aluno from tb_visitante
+    where cpf = ? 
+    `
+ 
+    let info = await connection.query(comando,[ cpf ]);
+    let regis = info[0]
+
+    return regis;
+
+}
+
+export async function consultarId(id){
+    let comando = `
+    
+    select nome,cpf,email,ex_aluno from tb_visitante
+    where id = ?
+    ` 
+
+    let info = await connection.query(comando,[id]);
+    let registros = info[0];
+
+    return registros;
+}
