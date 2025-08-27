@@ -34,7 +34,7 @@ export async function inserirCadastro(novoCadastro){
 export async function consultarNome(nome){
     let comando = `
     
-    select nome,cpf,email,ex_aluno from tb_visitante
+    select * from tb_visitante
     where nome like  ? 
     `
  
